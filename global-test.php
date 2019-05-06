@@ -15,7 +15,7 @@ function f()
     echo "fun f()后a:\n" ;
     echo $a ;
     echo "\n" ;
-//    unset($a);//仅仅删除了别名 $a，在f里$a 相当于外面的$a的别名，$GLOBALS['a'] 仍然存在
+    unset($a);//仅仅删除了别名 $a，在f里$a 相当于外面的$a的别名，$GLOBALS['a'] 仍然存在
 }
 
 function e()
