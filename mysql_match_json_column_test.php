@@ -1,11 +1,8 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: liushuiwen
- * Date: 2019/5/7
- * Time: 17:45
+ * @description ####### php  mysql  模糊匹配存放着多维数组（含中文）转成的json字符串 #####
  */
-//########## php + mysql  模糊匹配存放着多维数组（含中文）转成的json字符串 #####
 
 
 //数据库base_maintain_company 表里maintain_contacts字段 存放着json 数据，此时我需要前端通过传关键字来模糊匹配maintain_contacts字段记录，如图
