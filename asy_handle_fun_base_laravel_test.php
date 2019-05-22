@@ -24,8 +24,6 @@ class AsyExecFunction implements ShouldQueue
     private $object;
     //方法名
     private $functionName;
-    //如果是参数数组，数据键值顺序按照function所定义的参数循序从左到右排列
-    //如果不是数组
     private $argv;
     private $remark;
 
@@ -47,11 +45,8 @@ class AsyExecFunction implements ShouldQueue
             if (empty($this->argv)) {
                 $obj->$function();
             } else {
-                if (is_array($this->argv)) {
-                    $obj->$function(...$this->argv);
-                } else {
                     $obj->$function($this->argv);
-                }
+               
             }
             //TODO 支持params 类型未匿名函数
         } catch (\Exception $e) {
