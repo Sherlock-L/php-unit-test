@@ -27,6 +27,11 @@ class AsyExecFunction implements ShouldQueue
     private $argv;
     private $remark;
 
+    /**
+     * @description
+     * @param  mixed $params  如果执行方法包含多个参数 如 function a ($a,$b,$c)  可以将 $params = [1,4,6]来传递，
+     * 如果单个参数 可直接传一个非数组的值过来，如果是单个参数,且参数为数组 则传array(array())
+     */
     public function __construct($object, $functionName, $params = null, $remark = "异步执行方法")
     {
         $this->object       = $object;
@@ -37,18 +42,29 @@ class AsyExecFunction implements ShouldQueue
 
     public function handle()
     {
+        Log::info("asyExecFunction::start");
         try {
-            Log::info("asyExecFunction::start");
             Log::info($this->remark);
             $obj      = $this->object;
             $function = $this->functionName;
-            if (empty($this->argv)) {
-                $obj->$function();
-            } else {
-                    $obj->$function($this->argv);
-               
+            $functionVariable = [$obj,$function];
+            if(is_callable($functionVariable)){
+                if (empty($this->argv)) {
+                    call_user_func($functionVariable);
+                } else {
+                    if(is_array($this->argv)){
+                        $obj->{$function}(...$this->argv);
+                    }else{
+                        $obj->{$function}($this->argv);
+                    }
+                }
+            }else{
+                throw new \Exception("{$function} is not  callable");
             }
+
             //TODO 支持params 类型未匿名函数
+
+
         } catch (\Exception $e) {
             $logInfo = "{$e->getMessage()} code-line:{$e->getLine()} code-file:{$e->getFile()}";
             Log::error($logInfo);
