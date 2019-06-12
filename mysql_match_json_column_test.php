@@ -27,12 +27,13 @@
 //发现的问题：中文json格式化后 过后变成了16进制的数据，同时存入数据库时带有反斜杠（\），虽然打印下来如图，只有1条，但是实际需要4条反斜杠来描述
 //###有这么个解释 因为反斜线符号会被语法分析程序剥离一次，在进行模式匹配时，又会被剥离一次。反过来在自动增加反斜杠转义时，原来一条反斜杠会翻倍两次，就变了4条###。
 //解决办法;故需要在like之前,将匹配的字符传也json 格式化。然后再拼接   like "%$you_string%"
-
+//https://www.cnblogs.com/rereadyou/articles/2193359.html 关于php 字符包含\匹配mysql 的问题
 
 $matchName = '计算机';
 //mysql  \  变为  \\\\
 $likeName =json_encode($matchName);
 //json 一个字符串后，会收尾带有一个双引号，数组就没有这个状况 去除前后的双引号,
+
 $likeName = substr($likeName, 1);
 $likeName = substr($likeName, 0, -1);
 $likeName = str_replace('\\','\\\\\\\\',$likeName);
