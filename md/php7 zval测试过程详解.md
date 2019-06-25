@@ -2,6 +2,7 @@
 之前看了一篇鸟哥写的关于php7 zval的介绍，于是手痒就自己测试了一把。传送门：[深入理解PHP7内核之zval](http://www.laruence.com/2018/04/08/3170.html)
 
 文中只介绍了php7.1版本 的测试过程。有兴趣的同学可以先了解 php5 和php 7 zval 的变化和区别，再做测试。
+随手在csnd也翻了一篇讲php5和7的，同学们也可以看看 [深入理解PHP7之zval](https://blog.csdn.net/weixin_33816821/article/details/88675409)
 
 ## 结论
 - **特定的场景下**，php7 比php5 执行得更快，更节省内存。其中一各原因在于php 7更好的避免那些存放在内存里的value 拷贝。
@@ -11,7 +12,8 @@
 场景主要涉及 变量copy，变量引用非引用传递来回切换、函数调用。使用 xdebug_debug_zval() 观察变量状态。以及memory_get_usage()观察内存的变化情况。
 
 ## 过程详解
-**建议使用浏览器打印测试，因为换行符是html 标签**
+- 手机用户查看建议直接点开代码 看更有视觉效果 **点它---->** [测试代码](https://github.com/Sherlock-L/php-unit-test/blob/master/zval-test.php)
+- 自己跑测试代码建议用浏览器打印，因为换行符为html 标签
 ```
 <?php
 //测试前可查看 http://www.laruence.com/2018/04/08/3170.html 文章，关于php 7 zval 的新的结构
