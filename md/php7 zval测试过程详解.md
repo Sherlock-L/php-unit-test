@@ -1,10 +1,11 @@
+
 之前看了一篇鸟哥写的关于php7 zval的介绍，于是手痒就自己测试了一把。传送门：[深入理解PHP7内核之zval](http://www.laruence.com/2018/04/08/3170.html)
 
 文中只介绍了php7.1版本 的测试过程。有兴趣的同学可以先了解 php5 和php 7 zval 的变化和区别，再做测试。
 
 ## 结论
--  **特定的场景下**，php7 比php5 执行得更快，更节省内存。其中一各原因在于php 7更好的避免那些存放在内存里的value 拷贝。
-- php 7 的zval 更加的灵活，value类型更丰富，它新增了了引用、资源等zval类型。这也使得php 7 能更好的处理 避免产生大量的value拷贝的内存消耗。
+- **特定的场景下**，php7 比php5 执行得更快，更节省内存。其中一各原因在于php 7更好的避免那些存放在内存里的value 拷贝。
+- php 7 的zval 更加的灵活，value类型更丰富，它新增了引用、资源等zval类型。这也使得php 7 能更好的处理 、避免产生大量的value拷贝，从而导致内存消耗的问题。
 
 ## 测试介绍
 场景主要涉及 变量copy，变量引用非引用传递来回切换、函数调用。使用 xdebug_debug_zval() 观察变量状态。以及memory_get_usage()观察内存的变化情况。
@@ -17,10 +18,11 @@
 echo "初始: ".memory_get_usage()." 字节 <br>:";//366920 字节 
 //
 $array = range(1,99999); 
+echo "赋值$array时: ".memory_get_usage()." 字节  <br>";// 直接飙到 4571096 字节
 xdebug_debug_zval('array'); // (refcount=1, is_ref=0)
 $a  = $array; //共用一个 zval ，其值存在zval结构里 类型标志位为数组 zvalue 联合体中 ， refcount++ ,is_ref不变
 
-echo "赋值a时: ".memory_get_usage()." 字节  <br>";// 直接飙到 4571096 字节
+echo "赋值a时: ".memory_get_usage()." 字节  <br>";// 4571096 字节
 xdebug_debug_zval('a'); //(refcount=2, is_ref=0)
 xdebug_debug_zval('array');//(refcount=2, is_ref=0)
 
