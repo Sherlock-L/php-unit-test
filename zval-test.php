@@ -1,12 +1,13 @@
 <?php
 //测试前可查看 http://www.laruence.com/2018/04/08/3170.html 文章，关于php 7 zval 的新的结构
 echo "初始: ".memory_get_usage()." 字节 <br>:";//366920 字节 
-//
+
 $array = range(1,99999); 
+echo "赋值$array时: ".memory_get_usage()." 字节  <br>";// 直接飙到 4571096 字节
 xdebug_debug_zval('array'); // (refcount=1, is_ref=0)
 $a  = $array; //共用一个 zval ，其值存在zval结构里 类型标志位为数组 zvalue 联合体中 ， refcount++ ,is_ref不变
 
-echo "赋值a时: ".memory_get_usage()." 字节  <br>";// 直接飙到 4571096 字节
+echo "赋值a时: ".memory_get_usage()." 字节  <br>";// 4571096 字节
 xdebug_debug_zval('a'); //(refcount=2, is_ref=0)
 xdebug_debug_zval('array');//(refcount=2, is_ref=0)
 
