@@ -50,7 +50,7 @@ $statement->execute();
 //多条打印
 print_r($statement->fetchAll());//获取所有结果，数组的形式
 print_r($statement->rowCount());//返回行数
-die();
+
 
 //==============非预处理===================  
   

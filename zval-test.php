@@ -1,5 +1,6 @@
 <?php
 //测试前可查看 http://www.laruence.com/2018/04/08/3170.html 文章，关于php 7 zval 的新的结构
+//https://php.net/manual/zh/features.gc.collecting-cycles.php
 echo "初始: ".memory_get_usage()." 字节 <br>:";//366920 字节 
 
 $array = range(1,99999); 
