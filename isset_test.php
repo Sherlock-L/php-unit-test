@@ -4,6 +4,9 @@
  * 但是对于null 值的变量，则返回false ，虽然看似这个变量满足字面理解“被设置”。所以使用任何函数好好看说明书。。
  * 官方解释是isset — 检测变量是否已设置并且非 NULL   https://www.php.net/manual/zh/function.isset.php
  */
+function kk(){
+    echo 666;
+}
 class test{
         public $a;
         public static $b;
@@ -11,6 +14,7 @@ class test{
         public static $d =1;
 
 }
+kk();
 
 $obj = new test();
 if(isset($obj->a)){ //结果为false ，因为在类里虽然声明了，但是并没有赋予对应的值
