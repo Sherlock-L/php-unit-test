@@ -75,8 +75,10 @@ class AsyExecFunction implements ShouldQueue
         }
         Log::info("asyExecFunction::end");
     }
+}
 
 /*********基于laravel框架， 使用其dispatch()方法来发布异步执行AsyExecFunction实例**********/
+//https://learnku.com/docs/laravel/5.5/queues/1324  laravel 脚本配置
 class Test{
     public function add($a,$b){
         echo $a+$b;
