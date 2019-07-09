@@ -34,6 +34,7 @@ class AsyExecFunction implements ShouldQueue
      * """"""特别注意"""""""
      * 首先job 添加到队列，执行前 内容参数序列化存入数据库或者别的驱动中，而静态变量是无法序列化的。
      * 所以其实用异步执行方法类的时候就要注意，如果需要使用当前静态变量的值，应该将其保存到可序列化的变量里以确保执行。
+     * 另外部分类型 如Closure  是不允许序列化的，所以使用时需要测试
      * """""""""""""""""""""
      */
     public function __construct($object, $functionName, $params = null, $remark = "异步执行方法")
