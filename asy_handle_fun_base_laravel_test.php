@@ -27,10 +27,14 @@ class AsyExecFunction implements ShouldQueue
     private $argv;
     private $remark;
 
-    /**
+   /**
      * @description
      * @param  mixed $params  如果执行方法包含多个参数 如 function a ($a,$b,$c)  可以将 $params = [1,4,6]来传递，
      * 如果单个参数 可直接传一个非数组的值过来，如果是单个参数,且参数为数组 则传array(array())
+     * """"""特别注意"""""""
+     * 首先job 添加到队列，执行前 内容参数序列化存入数据库或者别的驱动中，而静态变量是无法序列化的。
+     * 所以其实用异步执行方法类的时候就要注意，如果需要使用当前静态变量的值，应该将其保存到可序列化的变量里以确保执行。
+     * """""""""""""""""""""
      */
     public function __construct($object, $functionName, $params = null, $remark = "异步执行方法")
     {
@@ -71,7 +75,6 @@ class AsyExecFunction implements ShouldQueue
         }
         Log::info("asyExecFunction::end");
     }
-}
 
 /*********基于laravel框架， 使用其dispatch()方法来发布异步执行AsyExecFunction实例**********/
 class Test{
