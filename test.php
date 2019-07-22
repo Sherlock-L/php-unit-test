@@ -1,35 +1,31 @@
 <?php
 error_reporting(0);
-//https://www.php.net/manual-lookup.php?pattern=finally&scope=quickref
- function  a(){
-    try { 
-        return "888\n";//执行
-    } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
-    } finally {
-        echo "a finally.\n"; //执行
+//https://www.php.net/manual/en/class.iterator.php
+//https://www.php.net/manual/zh/reserved.interfaces.php 
+/*
+遍历
+迭代器
+聚合式迭代器
+数组式访问
+序列化
+Closure
+生成器*/ 
+
+class T {
+}
+
+class test extends T {
+
+}
+
+    $a = new test();
+    $b = new t();
+
+
+    if($a  instanceof T){
+        echo 666;  //TRUE 
     }
-    return "999\n"; //不执行 ，因为之前已经return 了
-    
- }
 
- function  b(){
-    try { 
-        throw new Exception("手动异常");
-    } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n"; //执行
-    } finally {
-        echo "b finally.\n"; //执行
+    if($b  instanceof test){
+        echo 777; //FALSE
     }
-    
- }
-
-echo a(); //finally 执行
-echo b();//finally 执行
-
-/** 执行结果  
-a finally.
-888
-Caught exception: 手动异常
-b finally.
- */
