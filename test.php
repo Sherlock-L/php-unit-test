@@ -11,21 +11,7 @@ error_reporting(0);
 Closure
 生成器*/ 
 
-class T {
-}
-
-class test extends T {
-
-}
-
-    $a = new test();
-    $b = new t();
 
 
-    if($a  instanceof T){
-        echo 666;  //TRUE 
-    }
 
-    if($b  instanceof test){
-        echo 777; //FALSE
-    }
+
