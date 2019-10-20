@@ -6,7 +6,7 @@ namespace test;
 //require "./util/debug.php";
 
 /*TODO 根据$class 解析得到命名空间，和类名，然后去转化到对应目录，所以psr-4规范 很重要
-   命名空间格式和目录结构保持一致、以及文件名和类名一致、方面动态require 时更简单的定位目标。
+   命名空间格式和目录结构保持一致、以及文件名和类名一致、方便动态require 时更简单的定位目标。
    部分的第三方包也会在其内部目录定义自己的autoload*/ 
 spl_autoload_register(function($class){
     echo "$class is not require ,now try autoload spl_autoload_register \n";
