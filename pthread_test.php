@@ -18,6 +18,7 @@ foreach($pool as $worker){
     $worker->start();
 }
 foreach($pool as $worker){
-    $worker->join();
+    $worker->join();//让每个worker线程加入到当前的主线程。然后主线程等待所有join的线程执行完后才会继续往下执行，如果不join 可能主线程先结束，子线程继续执行
 }
+echo "完毕";
 ?>
