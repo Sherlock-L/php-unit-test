@@ -31,7 +31,15 @@ class RpcClient {
         //向服务端发送我们自定义的协议数据
         fwrite($client, $proto);
         //读取服务端传来的数据
-        $data = fread($client, 2048);
+        $data = '';
+        $n=1;
+        $tmp = fread($client, 2048);
+        while(!empty($tmp)){
+            $data.= $tmp;
+            $tmp=fread($client, 2048);
+            $n++;
+            echo '第'. $n.'次$tmp='.$tmp."\n";
+        }
         //关闭客户端
         fclose($client);
         return $data;
