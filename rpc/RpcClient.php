@@ -1,5 +1,7 @@
 <?php
- 
+ /**
+ * https://www.php.net/manual/zh/function.stream-socket-server.php
+ * */ 
 class RpcClient {
     protected $urlInfo = array();
      
