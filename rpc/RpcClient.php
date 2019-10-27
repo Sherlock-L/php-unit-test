@@ -33,6 +33,7 @@ class RpcClient {
         //读取服务端传来的数据
         $data = '';
         $n=1;
+        //此处read其实应该封装，比如一次数据量很大，服务端很久才返回，或者设置超时自动断开或者其他处理
         $tmp = fread($client, 2048);
         while(!empty($tmp)){
             $data.= $tmp;
