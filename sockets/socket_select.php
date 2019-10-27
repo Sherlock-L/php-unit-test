@@ -1,6 +1,6 @@
 <?php
  //https://blog.csdn.net/zhang197093/article/details/77366407  IO 多路复用
- 
+ //php  socket_select.php 开启服务端。 然后新窗口 telnet 127.0.0.1 8888，创建客户端
  
 $servsock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);  // 创建一个socket
  
