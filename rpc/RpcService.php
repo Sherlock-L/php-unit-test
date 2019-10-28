@@ -1,4 +1,7 @@
 <?php
+/**
+ * https://www.php.net/manual/zh/function.stream-socket-server.php
+ * */ 
 class RpcServer {
     protected $serv = null;
  
