@@ -15,7 +15,7 @@ with(new Illuminate\Filesystem\FilesystemServiceProvider($app))->register();
 with(new Illuminate\Events\EventServiceProvider($app))->register();
 with(new Illuminate\Routing\RoutingServiceProvider($app))->register();
 //实例化数据库 管理 Eloquent ORM
-$manager = new Manager();
+$manager = new Manager($app);
 $manager->addConnection(require '../app/config/database.php');
 $manager->bootEloquent();
 //加载路由
