@@ -6,8 +6,8 @@ $app = new Illuminate\Container\Container;
 //注册views
 Illuminate\Container\Container::setInstance($app);
 $app->instance('config', new Fluent);
-$app['config']['view.compiled'] = 'D:\BB\htdocs\php-unit-test\illuminate\storage';
-$app['config']['view.paths'] = 'D:\BB\htdocs\php-unit-test\illuminate\app\resources\views';
+$app['config']['view.compiled'] = 'D:/1/htdocs/php-test/illuminate/storage';
+$app['config']['view.paths'] = ['D:/1/htdocs/php-test/illuminate/app/resources/views'];
 with (new Illuminate\View\ViewServiceProvider($app))->register();
 with(new Illuminate\Filesystem\FilesystemServiceProvider($app))->register();
 
