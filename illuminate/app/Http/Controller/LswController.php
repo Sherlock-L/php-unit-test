@@ -22,7 +22,7 @@ class LswController
         var_dump($request->params->toArray());
         return json_encode(['data' => User::find($request->params->uid)]);
     }
-
+    
 //TODO 解决构造view 有问题，可能升级了，
     public function testView(Request $request)
     {
