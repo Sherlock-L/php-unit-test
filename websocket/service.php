@@ -111,6 +111,8 @@ class SocketService
       "WebSocket-Origin: $this->address\r\n" .
       "WebSocket-Location: ws://$this->address:$this->port/websocket/websocket\r\n".
       "Sec-WebSocket-Accept:$secAccept\r\n\r\n";
+        // 关于 Sec-WebSocket-Accept https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Sec-WebSocket-Accept
+        
     return socket_write($newClient, $upgrade, strlen($upgrade));
   }
 
